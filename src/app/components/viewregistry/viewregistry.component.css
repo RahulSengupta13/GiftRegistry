@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+h1, h2, h3, h4, h5, h6, p{
+    font-family: 'Nunito', sans-serif;
+}
+
+.drop-shadow {
+    -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, .2);
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .2);
+}
+
+.bg-back{
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.regDiv{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 0;
+    border: 1px dashed rgb(40, 160, 230);
+    color: rgb(153, 153, 153);
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+#dateCardHeader{
+    background: #1976d2;
+    color: azure;
+}
+#dateCard{
+    float: left;
+    position: absolute;
+    margin-left: 80px;
+}
+#headerDiv{
+    background-image: url("../../../assets/img/viewreg.png");
+}
+.itemCard{
+    opacity: 80%;
+}
+ng2-smart-table{
+    overflow-y: hidden;
+}

@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+h1, h2, h3, h4, h5, h6, p{
+    font-family: 'Nunito', sans-serif;
+}
+.drop-shadow {
+    -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, .2);
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .2);
+}
+.bg-back{
+    background-color: rgba(255, 255, 255, 0.6);
+}
+.row.vdivide [class*='col-']:not(:last-child):after {
+    background: #e0e0e0;
+    width: 1px;
+    content: "";
+    display:block;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right: 0;
+    min-height: 70px;
+}

@@ -1,0 +1,159 @@
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card mt-2">
+            <div class="card-header">
+                <!-- <img class="d-block mx-auto" height="22%" width="20%" src="../../../assets/img/logo.png" alt=""> -->
+                <h2 class="text-center">create a registry or list</h2>
+            </div>
+            <div class="card-body">
+                <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)">
+                  <div class="row vdivide">
+                    <div class="col-md-6 py-2">
+                      <div class="form-group">
+                          <label for="firstName">your first name</label>
+                          <input type="text" 
+                          class="form-control" 
+                          [(ngModel)]="user.firstName"
+                          [ngClass]="{'is-invalid':userFirstName.errors?.required && userFirstName.touched || userFirstName.errors?.minlength}"
+                          name="firstName"
+                          #userFirstName = "ngModel"
+                          minlength="2"
+                          required
+                          placeholder="First Name" />
+                          <div *ngIf="userFirstName.errors?.required && userFirstName.touched" class="invalid-feedback">
+                            First Name is required.
+                          </div>
+                          <div *ngIf="userFirstName.errors?.minlength && userFirstName.touched" class="invalid-feedback">
+                            First Name must be atleast 2 characters long.
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="lastName">your last name</label>
+                          <input type="text" 
+                          class="form-control" 
+                          [(ngModel)]="user.lastName"
+                          [ngClass]="{'is-invalid':userLastName.errors?.required && userLastName.touched ||userLastName.errors?.minlength}"
+                          name="lastName"
+                          #userLastName = "ngModel"
+                          minlength="2"
+                          required
+                          placeholder="Last Name" />
+                          <div *ngIf="userLastName.errors?.required && userLastName.touched" class="invalid-feedback">
+                            Last Name is required.
+                          </div>
+                          <div *ngIf="userLastName.errors?.minlength && userLastName.touched" class="invalid-feedback">
+                            Last Name must be atleast 2 characters long.
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="lastName">your event date</label>
+                          <div class="input-group">
+                              <input class="form-control" 
+                                placeholder="yyyy-mm-dd"
+                                name="eventDate" 
+                                [ngClass]="{'is-invalid':userRegDate.errors?.required && userRegDate.touched}"
+                                [(ngModel)]="user.eventDate" 
+                                ngbDatepicker
+                                #d="ngbDatepicker" 
+                                required 
+                                #userRegDate = "ngModel"
+                                [minDate]="minDate">
+                              <button class="input-group-addon" (click)="d.toggle()" type="button">
+                                  <i class="fa fa-calendar" aria-hidden="true"></i>
+                              </button>
+                              <div *ngIf="userRegDate.errors?.required && userRegDate.touched" class="invalid-feedback">
+                                &nbsp;Required
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 py-2">
+                        <div class="form-group">
+                          <label for="registryName">your registry name</label>
+                          <input type="text" 
+                          class="form-control" 
+                          [(ngModel)]="user.registryName"
+                          [ngClass]="{'is-invalid':userRegName.errors?.required && userRegName.touched || userRegName.errors?.minlength}"
+                          name="registryName"
+                          #userRegName = "ngModel"
+                          minlength="5"
+                          required
+                          placeholder="registry name" />
+                          <div *ngIf="userRegName.errors?.required && userRegName.touched" class="invalid-feedback">
+                            Registry name is required.
+                          </div>
+                          <div *ngIf="userRegName.errors?.minlength && userRegName.touched" class="invalid-feedback">
+                            Registry name must be atleast 5 characters long.
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="url">choose your registry url (ras.pi/<strong>your_url</strong>)
+                          </label>
+                          <input type="text" 
+                          class="form-control" 
+                          [(ngModel)]="user.url"
+                          [ngClass]="{'is-invalid':userRegUrl.errors?.required && userRegUrl.touched || userRegUrl.errors?.minlength}"
+                          name="url"
+                          #userRegUrl = "ngModel"
+                          minlength="12"
+                          required
+                          placeholder="registry url" />
+                          <div *ngIf="userRegUrl.errors?.required && userRegUrl.touched" class="invalid-feedback">
+                            registry url required
+                          </div>
+                          <div *ngIf="userRegUrl.errors?.minlength && userRegUrl.touched" class="invalid-feedback">
+                            url name must be atleast 5 characters long
+                          </div>
+                          <!-- <div *ngIf="user.url.length>=12" class="py-2">
+                            <button class="btn btn-success">Check Availablity</button>
+                          </div> -->
+                          <label class="text-justify py-2"><code><strong>*Note</strong></code>This becomes a link directly to your registry page. You will not be able to change the URL once you've set it here.</label>
+                      </div>
+                      <div [hidden] = "!user.share" class=" form-group py-3">
+                        <form>
+                          <table class="table table-condensed">
+                            <thead>
+                              <th>
+                                Select users to share the registry with
+                              </th>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let userEntry of users">
+                                <td>
+                                    <input 
+                                      type="checkbox" 
+                                      class="form-check-input"
+                                      (change) = "onChangeSharedUser(userEntry)"
+                                      name="sharewith">
+                                    <label for="sharewith">{{userEntry.firstName}} {{userEntry.lastName}}</label>
+                                </td>
+                                <td>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </form>
+                      </div>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input 
+                          type="checkbox" 
+                          class="form-check-input"
+                          [checked]="user.share"
+                          name="share"
+                          (change)="user.share = !user.share" >
+                          Check if you want it to be a private registry
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-4 mx-auto">
+                      {{userId}}
+                      <input type="submit" value="Create" class="btn btn-primary btn-block mt-3">
+                    </div>
+                </div>
+                </form>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

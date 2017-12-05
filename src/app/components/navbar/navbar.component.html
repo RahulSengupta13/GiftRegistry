@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark py-1">
+  <a class="navbar-brand" href="#">
+      <img src="../../../assets/img/logo.png" width="39" height="35" alt="" id="logo"/>RaspberryPi
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li *ngIf="isLoggedIn" class="nav-item">
+        <a class="nav-link" href="#" routerLink="/">Home</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <li *ngIf="!isLoggedIn" class="nav-item">
+          <a class="nav-link" href="#" routerLink="/login">Login</a>
+        </li>
+        <li *ngIf="!isLoggedIn" class="nav-item">
+            <a class="nav-link" href="#" routerLink="/register">Register</a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item">
+            <a class="nav-link" href="#">{{loggedInUser}}</a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item">
+            <a class="nav-link" href="#" (click)="onLogoutClick()">Logout</a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item">
+            <a class="nav-link" href="#" routerLink="/profile/{{userEmail}}">Edit Profile</a>
+        </li>
+      </ul>
+  </div>
+</nav>

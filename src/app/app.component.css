@@ -1,0 +1,12 @@
+.bg-image{
+    background-image: url("../assets/img/background.png");
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    overflow: auto;
+    height: 100%;
+	width: 100%;
+}
