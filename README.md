@@ -1,4 +1,7 @@
 # RegistryApp
+Frontend for a gift registry website, to create and manage gift registries. Includes an admin login, to manage the inventory for the registries. This application supports Single Sign On(SSO) using Google.
+
+![Alt text](screencap.png?raw=true "application preview")
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
 
